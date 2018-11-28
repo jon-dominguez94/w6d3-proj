@@ -114,7 +114,16 @@ module.exports = FollowToggle;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const FollowToggle = __webpack_require__ (/*! ./follow_toggle.js */ "./frontend/follow_toggle.js")
+const FollowToggle = __webpack_require__ (/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+
+$( () => {
+  // let $buttonFollow = $('button.follow-toggle');
+  $('button.follow-toggle').each((idx, el) => new FollowToggle(el));
+  // debugger;
+  //   ( function (el) {
+  //   this[el] = new FollowToggle();
+  // }));
+});
 
 
 /***/ })
