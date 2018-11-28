@@ -196,15 +196,43 @@ module.exports = FollowToggle;
 /***/ (function(module, exports, __webpack_require__) {
 
 const FollowToggle = __webpack_require__ (/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 
 $( () => {
   // let $buttonFollow = $('button.follow-toggle');
   $('button.follow-toggle').each((idx, el) => new FollowToggle(el));
   // debugger;
+  $('users-search').each((idx, el) => new UsersSearch(el));
   //   ( function (el) {
   //   this[el] = new FollowToggle();
   // }));
 });
+
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+class UsersSearch {
+  constructor(el) {
+    this.$el = $(el);
+    this.$input = $(this.$el.input);
+    this.$ul = $(this.$el.ul);
+  }
+
+  handleInput () {
+    APIUtil.searchUsers(this.$input.val());
+  }
+}
+
+module.exports = UsersSearch;
 
 
 /***/ })
