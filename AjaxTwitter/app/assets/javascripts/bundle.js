@@ -112,10 +112,10 @@ class FollowToggle {
 
   handleClick(){
 
-    debugger;
+    // debugger;
 
     this.$el.on("click", e => {
-      debugger;
+      // debugger;
       let method;
       if(this.followState === "unfollowed") {
         method = "POST";
