@@ -19,15 +19,11 @@ class FollowToggle {
   }
 
   handleClick(){
-
-    // debugger;
-
     this.$el.on("click", e => {
       e.preventDefault();
-      // debugger;
+
       let method;
       if(this.followState === "unfollowed") {
-        // method = "POST";
         APIUtil.followUser(this.userId).then(() => {
           this.followState = "followed";
           this.render();
@@ -37,25 +33,9 @@ class FollowToggle {
           this.followState = "unfollowed";
           this.render();
         });
-        // method = "DELETE";
       }
-      // return $.ajax({
-      //   method: method,
-      //   url: `/users/${this.userId}/follow`,
-      //   dataType: 'JSON'
-      // }).then(() => {
-      //   if(this.followState === "unfollowed") {
-      //     this.followState = "followed";
-      //   } else {
-      //     this.followState = "unfollowed";
-      //   }
-      //   this.render();
-      // });
+
     });
-    // debugger
-
-
-    // this.render();
   }
 }
 
