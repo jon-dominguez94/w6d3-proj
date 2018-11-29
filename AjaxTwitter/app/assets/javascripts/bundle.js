@@ -108,6 +108,17 @@ const APIUtil = {
       url: `/users/${id}/follow`,
       dataType: 'JSON'
     });
+  },
+
+  searchUsers: (queryVal, success) => {
+    return $.ajax({
+      method: 'GET',
+      url: `/users/search`,
+      dataType: 'JSON',
+      data: {
+        query: queryVal
+      }
+    }).then(res => success(res));
   }
 };
 
@@ -202,7 +213,7 @@ $( () => {
   // let $buttonFollow = $('button.follow-toggle');
   $('button.follow-toggle').each((idx, el) => new FollowToggle(el));
   // debugger;
-  $('users-search').each((idx, el) => new UsersSearch(el));
+  $('nav.users-search').each((idx, el) => new UsersSearch(el));
   //   ( function (el) {
   //   this[el] = new FollowToggle();
   // }));
@@ -223,12 +234,35 @@ const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js
 class UsersSearch {
   constructor(el) {
     this.$el = $(el);
-    this.$input = $(this.$el.input);
-    this.$ul = $(this.$el.ul);
+    this.$input = (this.$el.find('input'));
+    this.$ul = $(this.$el.find('ul'));
+    // debugger
+    this.handleInput();
   }
 
   handleInput () {
-    APIUtil.searchUsers(this.$input.val());
+    this.$input.on('change', e => {
+      APIUtil.searchUsers(this.$input.val(), this.renderResults.bind(this));
+    });
+
+  }
+
+  // success (data) {
+  //   let something = JSON.parse(data);
+  //
+  // }
+
+  renderResults (data) {
+    // debugger
+    this.$ul.empty();
+    const that = this;
+    data.forEach( el => {
+      let $li = $('<li></li>');
+      let $a = $(`<a href="/users/${el.id}"></a>`).html(`${el.username}`);
+      $li.append($a);
+      that.$ul.append($li);
+    });
+
   }
 }
 
