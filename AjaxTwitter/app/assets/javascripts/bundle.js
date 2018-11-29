@@ -243,7 +243,7 @@ class UsersSearch {
   }
 
   handleInput () {
-    this.$input.on('change', e => {
+    this.$input.on('keyup', e => {
       APIUtil.searchUsers(this.$input.val(), this.renderResults.bind(this));
     });
 
