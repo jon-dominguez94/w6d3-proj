@@ -6,7 +6,7 @@ class UsersSearch {
     this.$el = $(el);
     this.$input = (this.$el.find('input'));
     this.$ul = $(this.$el.find('ul'));
-    // debugger
+
     this.handleInput();
   }
 
@@ -17,13 +17,8 @@ class UsersSearch {
 
   }
 
-  // success (data) {
-  //   let something = JSON.parse(data);
-  //
-  // }
 
   renderResults (data) {
-    // debugger
     this.$ul.empty();
     const that = this;
     data.forEach( el => {
@@ -35,7 +30,6 @@ class UsersSearch {
 
       $li.append($a);
       $li.append($btn);
-
       that.$ul.append($li);
     });
 
